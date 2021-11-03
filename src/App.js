@@ -6,7 +6,7 @@ export default class App {
     const hello = new Hello({
       $target,
       fetchData: async () => {
-        const response = await api.getMovies();
+        const response = await api.getMovieDetail();
         if (!response.isError) {
           hello.setData([...hello.data, ...response.data]);
         } else {

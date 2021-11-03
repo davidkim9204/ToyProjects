@@ -15,11 +15,16 @@ export default class Hello {
   render() {
     this.section.innerHTML = "";
     this.data.forEach((val, idx) => {
+      console.log(val);
       const block = document.createElement("div");
 
       const title = document.createElement("h1");
+      const detail = document.createElement("div");
+      detail.classList.add('movieDetail');
       title.innerText = val.title;
+      detail.innerText = val.summary;
       block.appendChild(title);
+      title.appendChild(detail);
       this.section.appendChild(block);
     });
   }

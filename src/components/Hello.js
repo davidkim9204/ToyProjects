@@ -15,7 +15,6 @@ export default class Hello {
   render() {
     this.section.innerHTML = "";
     this.data.forEach((val, idx) => {
-      console.log(val);
       const block = document.createElement("div");
 
       const title = document.createElement("h1");

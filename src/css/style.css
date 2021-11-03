@@ -1,0 +1,10 @@
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  flex: 1;
+}
+
+.movieDetail {
+  font-size: 15px;
+}

@@ -1,10 +1,13 @@
-export default class Hello {
+import infinityScroll from "../util/infinityScroll.js";
+
+export default class ScrollView {
   constructor({ $target, fetchData }) {
     this.section = document.createElement("section");
     this.section.classList.add("container");
     this.data = [];
-    $target.appendChild(this.section);
     fetchData();
+    this.intersection = infinityScroll(fetchData);
+    $target.appendChild(this.section);
   }
 
   setData(data) {
@@ -12,19 +15,26 @@ export default class Hello {
     this.render();
   }
 
+  setIntersection() {
+    const blocks = document.querySelectorAll(".block");
+    this.intersection.observe(blocks[blocks.length - 1]);
+  }
+
   render() {
     this.section.innerHTML = "";
     this.data.forEach((val, idx) => {
       const block = document.createElement("div");
+      block.classList.add("block");
 
       const title = document.createElement("h1");
-      const detail = document.createElement("div");
-      detail.classList.add('movieDetail');
       title.innerText = val.title;
-      detail.innerText = val.summary;
+      
+      const image = document.createElement("img");
+      image.src = val.medium_cover_image;
       block.appendChild(title);
-      title.appendChild(detail);
+      block.appendChild(image);      
       this.section.appendChild(block);
     });
+    this.setIntersection();
   }
 }
